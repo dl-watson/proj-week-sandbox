@@ -31,11 +31,11 @@ VALUES  ('key', 'a key', ARRAY['hold', 'use'], 1),
 INSERT INTO game_instances (game_completed)
 VALUES (false);
 
-INSERT INTO game_users (game_user_id, socket_uuid, current_location, hp, base_atk, inventory)
-VALUES  (1, 1, 'entrance-hall', 20, 3, ARRAY[]),
-        (1, 2, 'entrance-hall', 20, 3, ARRAY[]),
-        (1, 3, 'entrance-hall', 20, 3, ARRAY[]),
-        (1, 4, 'entrance-hall', 20, 3, ARRAY[]);
+INSERT INTO game_users (game_id, game_user_id, socket_uuid, current_location, hp, base_atk, inventory)
+VALUES  (1, 1, 1, 'entrance-hall', 20, 3, '{}'),
+        (1, 1, 2, 'entrance-hall', 20, 3, '{}'),
+        (1, 1, 3, 'entrance-hall', 20, 3, '{}'),
+        (1, 1, 4, 'entrance-hall', 20, 3, '{}');
 
 INSERT INTO game_items (item_id, game_id, room_id)
 VALUES  (1, 1, 1),
