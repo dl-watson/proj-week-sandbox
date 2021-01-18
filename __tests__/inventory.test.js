@@ -16,7 +16,6 @@ describe("test inventory routes", () => {
   it("allows a user to add an item to their inventory", async () => {
     const { rows } = await pool.query(`SELECT * FROM game_users`);
 
-    // add a key to a user's inventory
     const res = await request(app).get(
       `/inventory/add/${rows[0].game_id}/${rows[0].game_user_id}/key`
     );
@@ -27,12 +26,10 @@ describe("test inventory routes", () => {
   it("allows a user to view their inventory via GET", async () => {
     const { rows } = await pool.query(`SELECT * FROM game_users`);
 
-    // add a key to a user's inventory
     await request(app).get(
       `/inventory/add/${rows[0].game_id}/${rows[0].game_user_id}/key`
     );
 
-    // get that user's inventory
     const res = await request(app).get(
       `/inventory/view/${rows[0].game_id}/${rows[0].game_user_id}`
     );
@@ -43,7 +40,6 @@ describe("test inventory routes", () => {
   it("allows a user to remove an item from their inventory", async () => {
     const { rows } = await pool.query(`SELECT * FROM game_users`);
 
-    // add a key to a user's inventory
     const res = await request(app).get(
       `/inventory/remove/${rows[0].game_id}/${rows[0].game_user_id}/key`
     );

@@ -23,7 +23,7 @@ BEGIN;
 -- ensure that the item belongs to to the correct room by room_id
 UPDATE items
 SET (room_id) = (SELECT room_id FROM rooms
-WHERE rooms.name = 'entrance-hall');
+WHERE rooms.name = 'entrance-hall' ORDER BY room_id DESC LIMIT 1);
 COMMIT;
 
 BEGIN;
