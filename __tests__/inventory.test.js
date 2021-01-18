@@ -39,4 +39,15 @@ describe("test inventory routes", () => {
 
     expect(res.body).toEqual({ inventory: ["key"] });
   });
+
+  it("allows a user to remove an item from their inventory", async () => {
+    const { rows } = await pool.query(`SELECT * FROM game_users`);
+
+    // add a key to a user's inventory
+    const res = await request(app).get(
+      `/inventory/remove/${rows[0].game_id}/${rows[0].game_user_id}/key`
+    );
+
+    expect(res.body).toEqual({ inventory: [] });
+  });
 });
