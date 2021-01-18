@@ -13,6 +13,17 @@ describe("test inventory routes", () => {
     return pool.query.end();
   });
 
+  it("allows a user to add an item to their inventory", async () => {
+    const { rows } = await pool.query(`SELECT * FROM game_users`);
+
+    // add a key to a user's inventory
+    const res = await request(app).get(
+      `/inventory/add/${rows[0].game_id}/${rows[0].game_user_id}/key`
+    );
+
+    expect(res.body).toEqual({ inventory: ["key"] });
+  });
+
   it("allows a user to view their inventory via GET", async () => {
     const { rows } = await pool.query(`SELECT * FROM game_users`);
 
