@@ -12,21 +12,21 @@ VALUES  ('entrance-hall', 'the entrance hall', 'room-1', 'null', 'null', 'null')
         ('room-3', 'the third room', 'null', 'room-1', 'null', 'null'),
         ('room-4', 'the fourth room', 'null', 'room-1', 'null', 'null');
 
-
+BEGIN;
 INSERT INTO items (name, description, actions, room_id)
-VALUES  ('key', 'a key', ARRAY['hold', 'use'], 1),
-        ('key', 'a key', ARRAY['hold', 'use'], 2),
-        ('key', 'a key', ARRAY['hold', 'use'], 3),
-        ('key', 'a key', ARRAY['hold', 'use'], 4),
-        ('torch', 'a torch', ARRAY['hold', 'light'], 1),
-        ('torch', 'a torch', ARRAY['hold', 'light'], 2),
-        ('torch', 'a torch', ARRAY['hold', 'light'], 3),
-        ('torch', 'a torch', ARRAY['hold', 'light'], 4),
-        ('dagger', 'a dagger', ARRAY['equip', 'stab'], 1),
-        ('dagger', 'a dagger', ARRAY['equip', 'stab'], 2),
-        ('dagger', 'a dagger', ARRAY['equip', 'stab'], 3),
-        ('dagger', 'a dagger', ARRAY['equip', 'stab'], 4);
-
+VALUES  ('key', 'a key', '{hold', 'use}', 1),
+        ('key', 'a key', '{hold', 'use}', 2),
+        ('key', 'a key', '{hold', 'use}', 3),
+        ('key', 'a key', '{hold', 'use}', 4),
+        ('torch', 'a torch', '{hold', 'light}', 1),
+        ('torch', 'a torch', '{hold', 'light}', 2),
+        ('torch', 'a torch', '{hold', 'light}', 3),
+        ('torch', 'a torch', '{hold', 'light}', 4),
+        ('dagger', 'a dagger', '{equip', 'stab}', 1),
+        ('dagger', 'a dagger', '{equip', 'stab}', 2),
+        ('dagger', 'a dagger', '{equip', 'stab}', 3),
+        ('dagger', 'a dagger', '{equip', 'stab}', 4);
+COMMIT;
 
 INSERT INTO game_instances (game_completed)
 VALUES (false);

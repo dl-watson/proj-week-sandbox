@@ -1,105 +1,29 @@
 const blessed = require("blessed");
 
-// Create a screen object
+const radioButton = require("./radio-buttons");
+const mainScreens = require("./main-screens");
+
 const screen = blessed.screen({
   smartCSR: true,
 });
 
 screen.title = "my window title";
 
-// Create a box
-const chatbox = blessed.box({
-  top: "0",
-  right: "0",
-  width: "50%",
-  height: "50%",
-  content: "Hello {bold}world{/bold}!",
-  tags: true,
-  border: {
-    type: "line",
-  },
-  style: {
-    fg: "white",
-    bg: "magenta",
-    border: {
-      fg: "#f0f0f0",
-    },
-    hover: {
-      bg: "green",
-    },
-  },
-});
+const gameBox = mainScreens.gameBox(screen);
+const gameInput = mainScreens.gameInput(gameBox);
 
-const gamebox = blessed.box({
-  top: "0",
-  left: "0",
-  width: "50%",
-  height: "50%",
-  content: "Hello {bold}world{/bold}!",
-  tags: true,
-  border: {
-    type: "line",
-  },
-  style: {
-    fg: "white",
-    bg: "magenta",
-    border: {
-      fg: "#f0f0f0",
-    },
-    hover: {
-      bg: "green",
-    },
-  },
-});
+const one = radioButton.one(gameInput, "one");
+const two = radioButton.two(gameInput, "two");
+const three = radioButton.three(gameInput, "three");
+const four = radioButton.four(gameInput, "four");
 
-const gameInput = blessed.box({
-  bottom: "0",
-  left: "0",
-  width: "50%",
-  height: "50%",
-  content: "Hello {bold}world{/bold}!",
-  tags: true,
-  border: {
-    type: "line",
-  },
-  style: {
-    fg: "white",
-    bg: "magenta",
-    border: {
-      fg: "#f0f0f0",
-    },
-    hover: {
-      bg: "green",
-    },
-  },
-});
+screen.append(gameBox);
 
-const chatInput = blessed.box({
-  bottom: "0",
-  right: "0",
-  width: "50%",
-  height: "50%",
-  content: "Hello {bold}world{/bold}!",
-  tags: true,
-  border: {
-    type: "line",
-  },
-  style: {
-    fg: "white",
-    bg: "magenta",
-    border: {
-      fg: "#f0f0f0",
-    },
-    hover: {
-      bg: "green",
-    },
-  },
-});
+one.focus();
 
-// Append our boxes to the screen
-screen.append(gamebox);
-screen.append(chatbox);
-screen.append(gameInput);
-screen.append(chatInput);
+one.on("check", (e) => {
+  radioButton.one(gameInput, "checked");
+  screen.render();
+});
 
 screen.render();
